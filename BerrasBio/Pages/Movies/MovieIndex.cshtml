@@ -1,0 +1,106 @@
+﻿@page "{id:int?}"
+@using BerrasBio.Data
+@model BerrasBio.Pages.Movies.MovieIndexModel
+
+@{
+    ViewData["Title"] = Model.Movie.MovieTitle;
+
+   
+}
+
+
+<div class="container film-info">
+        
+    <h1 class="film-tile">@Model.Movie.MovieTitle</h1>
+    <div>
+        <dl class="row">
+          <dt class="col-sm-2">
+             @Html.DisplayNameFor(model => model.Movie.MovieTitle)
+           </dt>
+           <dd class="col-sm-10">
+             @Html.DisplayFor(model => model.Movie.MovieTitle)
+            </dd>
+            <dt class="col-sm-2">
+             @Html.DisplayNameFor(model => model.Movie.RunTime)
+            </dt>
+             <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Movie.RunTime)
+            </dd>
+            <dt class="col-sm-2">
+             @Html.DisplayNameFor(model => model.Movie.Description)
+             </dt>
+            <dd class="col-sm-10">
+               @Html.DisplayFor(model => model.Movie.Description)
+        </dd>
+    </dl>
+   </div>
+
+   <div class="all-showings">
+    <table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AllShows[0].ShowingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllShows[0].Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllShows[0].BookedSeats)
+            </th>
+            <th>
+                Available seats
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AllShows[0].PriceRate)
+            </th>
+            <th>
+                Availability
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.AllShows) {
+          <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowingTime)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Movie.MovieTitle)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.BookedSeats)/50
+            </td>
+            <td> @{
+                    var availableSeats = 50-item.BookedSeats;
+                   }
+                  @availableSeats
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceRate)
+            </td>
+            <td>
+                        @if(item.BookedSeats >= 50)
+                        {
+                                <button type="button" onclick="fullyBooked()" class="full-button">Fully booked!</button>
+                            }
+                            else
+                            {
+                                
+                                <a asp-page="/Booking/Book" asp-route-ID="@item.ShowingId" button type="button" class="book-button">
+                         Book Now! 
+                    </a>  
+                        }
+            </td>
+            
+            </tr>
+
+            }
+          </tbody>
+          </table>
+    </div>
+</div>
+
+
+

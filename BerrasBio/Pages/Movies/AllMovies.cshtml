@@ -1,0 +1,34 @@
+﻿@page
+@model BerrasBio.Pages.Movies.AllMoviesModel
+
+@{
+    ViewData["Title"] = "Films ";
+}
+
+<h1 class="all-movies-view">Films playing at the theater right now!</h1>
+
+<div class= "card-group film-info ">
+
+    @foreach(var movies in Model.Movies)
+    {
+        var photoPath = "~/images/" + (movies.PhotoPath);
+        <div class="row mx-auto  mt-5 movie-card">
+        <div class="card col-lg-12 bg-dark text-white" id="movie-card" >
+            <div class="card-body">
+            <div class="card-title">
+                <h3>@movies.MovieTitle</h3>
+             </div>
+             <img class="card-img-top imageThumbnail" src="@photoPath"
+             asp-append-version="true"/>
+             <div class="card-footer text-center">
+                 <a asp-page="/Movies/MovieIndex"
+                 asp-route-ID="@movies.MovieId"
+                 button type ="button" class="more-info-btn ">More Info</a>
+              </div>
+        </div>
+        </div>
+        </div>
+    }
+
+</div>
+

@@ -1,0 +1,68 @@
+﻿@page
+@model BerrasBio.Pages.HomeModel
+@using BerrasBio.Core
+@using BerrasBio.Data
+@using BerrasBio.Models
+@using BerrasBio.Pages.Booking
+
+@{
+    ViewData["Title"] = "Home page";
+
+    Model.movieOfWeekTitle = "Breakfast at Tiffany's";
+    RetrieveDataFromDb data = new RetrieveDataFromDb();
+    Model.movieDescription = data.MovieDescription(Model.movieOfWeekTitle);   
+}
+
+@if(TempData[BookModel.MessageKey] is string message) 
+{
+                  <h3>@message</h3>
+}
+
+<div class ="intro-top carousel slide" id="carouselIntro" data-bs-ride="carousel" data-bs-interval="false" data-pause="hover">
+<div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselIntro" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselIntro" data-bs-slide-to="1" aria-label="Slide 2"></button>
+  </div>  
+  <div class="carousel-inner justify-content-center">
+    <div class="carousel-item active">
+      <div class="Bio-title">
+        <h1 class="Bio-name">Berras<span class="Bio-tag">Bio</span></h1>
+        <h3 class="Bio-mission">Bringing classics back to life</h3>
+    </div>
+    </div>
+    <div class="carousel-item">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="images/Breakfast-at-tiffanies-poster.jpeg" class ="poster-into" alt="Breakfast at Tiffany's poster" width="500" height="600">
+                </div>
+                <div class="col">
+                  <h1 class="movie-of-week">Movie of the week:</h1>
+                    <h2 class="into-movie-title">@Model.movieOfWeekTitle</h2>
+                    <p class="intro-movie-description">@Model.movieDescription</p>
+                    <a href="/Movies/MovieIndex/4"  button type="button" class="time-check">
+                        See available times!
+                    </a>  
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselIntro" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselIntro" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+
+
+
+
+

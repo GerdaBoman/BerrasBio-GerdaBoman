@@ -1,0 +1,86 @@
+﻿@page
+@model BerrasBio.Pages.Showings.ShowingsModel
+
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<head>
+    <script type="text/javascript">
+    function fullyBooked()
+        {
+            alert("Fully Booked!");
+         }
+</script>
+</head>
+
+<h1>Schedule</h1>
+
+
+<table class="table film-info text-light ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].ShowingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].Salon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].BookedSeats)
+            </th>
+            <th>
+               Available Seats
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Showing[0].PriceRate)
+            </th>
+            <th>Availability</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Showing) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowingTime)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Movie.MovieTitle)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.Salon.SalonId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookedSeats)
+            </td>
+            <td>
+                @{
+                    var availableSeats = 50-item.BookedSeats;
+                   }
+                  @availableSeats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceRate)
+            </td>
+          
+          
+            <td>
+               @if(item.BookedSeats >= 50)
+                        {
+                                <button type="button" onclick="fullyBooked()" class="full-button">Fully booked!</button>
+                            }
+                            else
+                            {
+                                
+                                <a asp-page="/Booking/Book" asp-route-ID="@item.ShowingId" button type="button" class="book-button">
+                         Book Now! 
+                    </a>  
+                        }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

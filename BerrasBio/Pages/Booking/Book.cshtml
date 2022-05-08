@@ -1,0 +1,62 @@
+﻿@page "{id:int?}"
+@using System.ComponentModel.DataAnnotations
+@using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model
+
+@model BerrasBio.Pages.Booking.BookModel
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+
+<h1>Book your ticket(s): </h1>
+
+<h4>@Model.Movie.MovieTitle</h4>
+<hr />
+<div class="row film-info">
+    <div class="col-md-4">
+        <form  method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Showing.ShowingTime" class="control-label"></label>
+                <input  readonly asp-for="Showing.ShowingTime" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxSeats" class="control-label">Max Seating Available: </label>
+                <input readonly asp-for="MaxSeats" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Showing.BookedSeats" class="control-label"></label>
+                <input readonly asp-for="Showing.BookedSeats" id="bookedSeats" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailableSeats" class="control-label"></label>
+                <input readonly asp-for="AvailableSeats" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Showing.PriceRate" class="control-label"></label>
+                <input readonly asp-for="Showing.PriceRate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="WantedTickets" class="control-label">Choose amount of tickets:</label>
+                <input type="number" min="1" max="12" asp-for="WantedTickets" class="form-control ticket-number"  value=1 />
+            </div> 
+            <div class="form-group">  
+                <button type="submit"  id="bookBtn"  class="btn-primary btn">Book</button>        
+         </div>
+         <div class="response">
+            @if (TempData[BookModel.MessageKey] is string message) 
+            {
+                  <h3>@message</h3>
+            }
+         </div>
+
+            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

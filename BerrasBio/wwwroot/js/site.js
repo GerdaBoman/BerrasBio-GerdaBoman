@@ -4,6 +4,6 @@
 // Write your JavaScript code.
 
 function fullyBooked() {
-    alert("Fully Booked!");
+    alert("Fully Booked! Please choose another date.");
 }
 

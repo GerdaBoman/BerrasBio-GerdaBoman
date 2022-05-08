@@ -108,6 +108,7 @@ namespace BerrasBio.Pages.Booking
 
             MovieTitle = (from m in _context.Movie
                           join s in _context.Showings on m.MovieId equals s.MovieId
+                          where s.ShowingId == id
                           select m.MovieTitle).SingleOrDefault();
 
             if (check > 50)

@@ -44,11 +44,11 @@ public class DataSeeding
 
             var showings = new Showing[]
              {
-                new Showing { MovieId = 1, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 10, 0, 00), BookedSeats = random.Next(0, maxValue),PriceRate =100.00},
-                new Showing { MovieId = 2, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 13, 0, 00), BookedSeats = random.Next(0, maxValue) ,PriceRate =100.00},
-                new Showing { MovieId = 3, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 16, 30, 00), BookedSeats = random.Next(0, maxValue) ,PriceRate =170.00},
-                new Showing { MovieId = 4, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 19, 0, 00), BookedSeats = random.Next(0, maxValue),PriceRate =170.00},
-                new Showing { MovieId = 5, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 22, 0, 00), BookedSeats =random.Next(0, maxValue) ,PriceRate =170.00}
+                new Showing { MovieId = 1, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day+1, 10, 0, 00), BookedSeats = random.Next(0, maxValue),PriceRate =100.00},
+                new Showing { MovieId = 2, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day+1, 13, 0, 00), BookedSeats = random.Next(0, maxValue) ,PriceRate =100.00},
+                new Showing { MovieId = 3, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day+1, 16, 30, 00), BookedSeats = random.Next(0, maxValue) ,PriceRate =170.00},
+                new Showing { MovieId = 4, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day+1, 19, 0, 00), BookedSeats = random.Next(0, maxValue),PriceRate =170.00},
+                new Showing { MovieId = 5, SalonId = 1, ShowingTime = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day+1, 22, 0, 00), BookedSeats =random.Next(0, maxValue) ,PriceRate =170.00}
               };
             context.Showings.AddRange(showings);
         }

@@ -53,9 +53,10 @@ namespace BerrasBio.Pages.Booking
                            join s in _context.Showings on m.MovieId equals s.MovieId
                            select m).FirstOrDefaultAsync();
 
-            MovieTitle = await (from m in _context.Movie
-                           join s in _context.Showings on m.MovieId equals s.MovieId
-                           select m.MovieTitle).FirstOrDefaultAsync();
+            MovieTitle = (from m in _context.Movie
+                                join s in _context.Showings on m.MovieId equals s.MovieId
+                                 where s.ShowingId == id
+                                select m.MovieTitle).SingleOrDefault();
 
 
             MaxSeats = await (from sh in _context.Showings
@@ -107,7 +108,7 @@ namespace BerrasBio.Pages.Booking
 
             MovieTitle = (from m in _context.Movie
                           join s in _context.Showings on m.MovieId equals s.MovieId
-                          select m.MovieTitle).FirstOrDefault();
+                          select m.MovieTitle).SingleOrDefault();
 
             if (check > 50)
             {
